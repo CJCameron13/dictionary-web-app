@@ -7,6 +7,8 @@
     --light-grey: rgb(233,233,233);
     --very-light-grey: rgb(244,244,244);
     --white: rgb(255,255,255);
+    --purple: rgb(164,69,237);
+    --red-orange: rgb(255,82,82);
 
 }
 
@@ -21,16 +23,20 @@ body {
     align-items: center;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
+    padding-top: 10vh;
 }
 
 #main-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     width: 60vw;
     max-width: 800px;
+}
+
+.sans-serif {
+    font-family: "Inter", sans-serif;
 }
 
 #top-row {
@@ -73,6 +79,7 @@ body {
 
 #toggle:hover {
     cursor: pointer;
+    background-color: var(--purple);
 }
 
 #input-field {
@@ -94,3 +101,96 @@ body {
     outline: none;
 }
 
+#word-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 5vh;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+#pronunciation {
+    color: var(--purple);
+}
+
+.pos-divider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 5vh 0;
+}
+
+.pos {
+    font-style: italic;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.pos-divider .divider {
+    height: 1px;
+    background-color: var(--light-grey);
+    width: 93%;
+}
+
+h4 {
+    color: var(--grey);
+    font-weight: 300;
+    margin-bottom: 3vh;
+}
+
+ul {
+    padding-inline-start: 5%;
+    margin-bottom: 3vh;
+}
+
+li {
+    margin-bottom: 1vh;
+    color: var(--very-dark-grey);
+}
+
+li::marker {
+    color: var(--purple);
+}
+
+.synonyms-container {
+    display: flex;
+    gap: 1vw;
+}
+
+.synonyms {
+    color: var(--purple);
+    font-weight: 700;
+}
+
+.example-item {
+    padding-inline-start: 5%;
+    color: var(--grey);
+}
+
+.divider {
+    height: 1px;
+    width: 100%;
+    background-color: var(--light-grey);
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+}
+
+.source {
+    display: flex;
+    gap: 1vw;
+}
+
+.source p {
+    color: var(--grey);
+    font-weight: 200;
+    font-size: 0.8rem;
+}
+
+.source a {
+    font-size: 0.8rem;
+}
