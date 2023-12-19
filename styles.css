@@ -39,6 +39,14 @@ body {
     font-family: "Inter", sans-serif;
 }
 
+.serif {
+    font-family: 'Lora', serif;
+}
+
+.mono {
+    font-family: 'Inconsolata';
+}
+
 #top-row {
     display: flex;
     justify-content: space-between;
@@ -50,6 +58,56 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 25%;
+    position: relative;
+}
+
+#font-select {
+    display: flex;
+    gap: 10px;
+}
+
+#font-select:hover {
+    cursor: pointer;
+}
+
+#selected-font {
+    font-weight: 700;
+}
+
+#font-select-popup {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    top: 45px;
+    right: 50%;
+    background-color: var(--white);
+    width: 10vw;
+    height: 15vh;
+    padding: 10%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 1px var(--light-grey);
+}
+
+#font-select-popup.hidden {
+    display: none;
+}
+
+.font-option {
+    font-weight: 700;
+}
+
+.font-option:hover {
+    cursor: pointer;
+    color: var(--purple);
+}
+
+#select-serif {
+    font-family: 'Lora', serif;
+}
+
+#select-mono {
+    font-family: 'Inconsolata';
 }
 
 #top-row-right .divider-line {
@@ -99,6 +157,9 @@ body {
     background-color: var(--light-grey);
     border-width: 0;
     outline: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
 }
 
 #word-display {
@@ -172,17 +233,18 @@ li::marker {
     color: var(--grey);
 }
 
-.divider {
+.bottom-divider {
     height: 1px;
     width: 100%;
     background-color: var(--light-grey);
     margin-top: 5vh;
-    margin-bottom: 2vh;
+    margin-bottom: 1vh;
 }
 
 .source {
     display: flex;
     gap: 1vw;
+    margin-bottom: 10vh;
 }
 
 .source p {
@@ -194,3 +256,58 @@ li::marker {
 .source a {
     font-size: 0.8rem;
 }
+
+/* Dark mode styling */
+
+body.dark-mode {
+    background-color: var(--black);
+}
+
+.dark-mode h1 {
+    color: var(--white);
+}
+
+.dark-mode #font-select p {
+    color: var(--white);
+}
+
+.dark-mode #font-select-popup {
+    background-color: var(--black);
+    color: var(--white);
+    box-shadow: 0px 0px 20px 1px var(--purple);
+}
+
+.dark-mode #top-row-right .divider-line {
+    background-color: var(--dark-grey);
+}
+
+.dark-mode #toggle {
+    background-color: var(--purple);
+    justify-content: flex-end;
+}
+
+.dark-mode #input-field {
+    background-color: var(--very-dark-grey);
+}
+
+.dark-mode #user-input {
+    background-color: var(--very-dark-grey);
+    color: var(--very-light-grey);
+}
+
+.dark-mode .pos {
+    color: var(--white);
+}
+
+.dark-mode .divider {
+    background-color: var(--dark-grey);
+}
+
+.dark-mode li {
+    color: var(--light-grey);
+}
+
+.dark-mode .bottom-divider {
+    background-color: var(--dark-grey);
+}
+
