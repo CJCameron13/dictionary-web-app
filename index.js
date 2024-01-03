@@ -1,91 +1,317 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+:root {
+    --black: rgb(5,5,5);
+    --very-dark-grey: rgb(31,31,31);
+    --dark-grey: rgb(45,45,45);
+    --less-dark-grey: rgb(58,58,58);
+    --grey: rgb(117,117,117);
+    --light-grey: rgb(233,233,233);
+    --very-light-grey: rgb(244,244,244);
+    --white: rgb(255,255,255);
+    --purple: rgb(164,69,237);
+    --red-orange: rgb(255,82,82);
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+}
 
-  <link rel="stylesheet" href="styles.css">
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800&family=Inter:wght@100;200;300;400;500;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <title>Frontend Mentor | Dictionary web app</title>
-</head>
-<body>
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    /* height: 100%; */
+    padding-top: 10vh;
+}
 
-  <div id="main-container" class="sans-serif">
-    <div id="top-row">
-      <img src="assets/images/logo.svg" alt="logo" id="logo">
-      <div id="top-row-right">
-        <div id="font-select">
-          <p id="selected-font">Sans Serif<p>
-          <img src="assets/images/icon-arrow-down.svg" alt="icon arrow down">
-        </div>
-        <div id="font-select-popup" class="hidden">
-          <p class="font-option" id="select-sans">Sans Serif</p>
-          <p class="font-option" id="select-serif">Serif</p>
-          <p class="font-option" id="select-mono">Mono</p>
-        </div>
-        <div class="divider-line"></div>
-        <div id="toggle">
-          <div id="toggle-switch"></div>
-        </div>
-        <img src="assets/images/icon-moon.svg" id="dark-mode-icon" alt="dark mode icon">
-      </div>
-    </div>
-    <div id="input-field">
-      <form action="" id="input-form"><input type="text" name="word" id="user-input"></form>
-      <img src="assets/images/icon-search.svg" alt="search icon">
-    </div>
-    <div id="word-display">
-      <div id="word-and-pronunciation">
-        <h1 id="word"></h1>
-        <p id="pronunciation"></p>
-      </div>
-      <img id="playback-button" class="hidden" src="assets/images/icon-play.svg" alt="playback button">
-    </div>
-    <div class="boilerplate">
-      <!-- <div class="pos-divider">
-        <p class="pos" id="pos-one"></p>
-        <div class="divider"></div>
-      </div>
-      <div class="definition-container">
-        <h4>Meaning</h4>
-        <ul id="definition-list">
-      
-        </ul>
-        <div class="synonyms-container">
-          <h4>Synonyms</h4>
-          <p class="synonyms"></p>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div class="pos-divider">
-      <p class="pos">verb</p>
-      <div class="divider"></div>
-    </div>
-    <div class="definition-container">
-      <h4>Meaning</h4>
-      <ul>
-        <li>To type on a computer keyboard</li>
-      </ul>
-      <div class="example-sentence">
-        <p class="example-item">"Keyboarding is the part of the job I hate the most</p>
-      </div>
-    </div> -->
-    <div id="footer" class="hidden">
-      <div class="bottom-divider"></div>
-      <div class="source">
-        <p>Source</p>
-        <a>link</a>
-        <img src="assets/images/icon-new-window.svg" alt="icon-new-window">
-      </div>
-    </div>
-  </div>
+.hidden {
+    display: none;
+}
 
-  <script src="index.js"></script>
-  <script src="dictionary.js"></script>
+#main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60vw;
+    max-width: 800px;
+}
 
-</body>
-</html>
+.sans-serif {
+    font-family: "Inter", sans-serif;
+}
+
+.serif {
+    font-family: 'Lora', serif;
+}
+
+.mono {
+    font-family: 'Inconsolata';
+}
+
+#top-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#top-row-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 25%;
+    position: relative;
+}
+
+#font-select {
+    display: flex;
+    gap: 10px;
+}
+
+#font-select:hover {
+    cursor: pointer;
+}
+
+#selected-font {
+    font-weight: 700;
+}
+
+#font-select-popup {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    top: 45px;
+    right: 50%;
+    background-color: var(--white);
+    width: 10vw;
+    height: 15vh;
+    padding: 10%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 1px var(--light-grey);
+}
+
+#font-select-popup.hidden {
+    display: none;
+}
+
+.font-option {
+    font-weight: 700;
+}
+
+.font-option:hover {
+    cursor: pointer;
+    color: var(--purple);
+}
+
+#select-serif {
+    font-family: 'Lora', serif;
+}
+
+#select-mono {
+    font-family: 'Inconsolata';
+}
+
+#top-row-right .divider-line {
+    height: 80%;
+    width: 2px;
+    background-color: var(--light-grey);
+    margin: 0 10px;
+}
+
+#toggle {
+    background-color: var(--grey);
+    width: 35px;
+    height: 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+#toggle-switch {
+    background-color: var(--white);
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+}
+
+#toggle:hover {
+    cursor: pointer;
+    background-color: var(--purple);
+}
+
+#input-field {
+    background-color: var(--light-grey);
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-radius: 10px;
+    margin-top: 5vh;
+}
+
+#user-input {
+    width: 90%;
+    background-color: var(--light-grey);
+    border-width: 0;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+#word-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 5vh;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+#pronunciation {
+    color: var(--purple);
+}
+
+.pos-divider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 5vh 0;
+}
+
+.pos {
+    font-style: italic;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.pos-divider .divider {
+    height: 1px;
+    background-color: var(--light-grey);
+    width: 93%;
+}
+
+h4 {
+    color: var(--grey);
+    font-weight: 300;
+    margin-bottom: 3vh;
+}
+
+ul {
+    padding-inline-start: 5%;
+    margin-bottom: 3vh;
+}
+
+li {
+    margin-bottom: 1vh;
+    color: var(--very-dark-grey);
+}
+
+li::marker {
+    color: var(--purple);
+}
+
+.synonyms-container {
+    display: flex;
+    gap: 1vw;
+}
+
+.synonyms {
+    color: var(--purple);
+    font-weight: 700;
+}
+
+.example-item {
+    padding-inline-start: 5%;
+    color: var(--grey);
+}
+
+.bottom-divider {
+    height: 1px;
+    width: 100%;
+    background-color: var(--light-grey);
+    margin-top: 5vh;
+    margin-bottom: 1vh;
+}
+
+.source {
+    display: flex;
+    gap: 1vw;
+    margin-bottom: 10vh;
+}
+
+.source p {
+    color: var(--grey);
+    font-weight: 200;
+    font-size: 0.8rem;
+}
+
+.source a {
+    font-size: 0.8rem;
+}
+
+/* Dark mode styling */
+
+body.dark-mode {
+    background-color: var(--black);
+}
+
+.dark-mode h1 {
+    color: var(--white);
+}
+
+.dark-mode #font-select p {
+    color: var(--white);
+}
+
+.dark-mode #font-select-popup {
+    background-color: var(--black);
+    color: var(--white);
+    box-shadow: 0px 0px 20px 1px var(--purple);
+}
+
+.dark-mode #top-row-right .divider-line {
+    background-color: var(--dark-grey);
+}
+
+.dark-mode #toggle {
+    background-color: var(--purple);
+    justify-content: flex-end;
+}
+
+.dark-mode #input-field {
+    background-color: var(--very-dark-grey);
+}
+
+.dark-mode #user-input {
+    background-color: var(--very-dark-grey);
+    color: var(--very-light-grey);
+}
+
+.dark-mode .pos {
+    color: var(--white);
+}
+
+.dark-mode .divider {
+    background-color: var(--dark-grey);
+}
+
+.dark-mode li {
+    color: var(--light-grey);
+}
+
+.dark-mode .bottom-divider {
+    background-color: var(--dark-grey);
+}
+
