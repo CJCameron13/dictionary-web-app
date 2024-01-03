@@ -4,9 +4,9 @@ const pronunciation = document.querySelector('#pronunciation')
 const partOfSpeechOne = document.querySelector("#pos-one")
 const definitionList = document.querySelector('#definition-list')
 const synonyms = document.querySelector('.synonyms')
-const boilerplate = document.querySelector('.boilerplate')
 const playbackButton = document.querySelector('#playback-button')
 const footerContainer = document.querySelector('#footer')
+const boilerplate = document.querySelector('.boilerplate')
 
 function submitForm(event){
 
@@ -15,6 +15,33 @@ function submitForm(event){
  }
 
 form.addEventListener('submit', submitForm)
+
+function addBoilerplate() {
+    let template = document.createElement('div');
+    template.innerHTML = `<div class="pos-divider">
+    <p class="pos" id="pos-one"></p>
+    <div class="divider"></div>
+  </div>
+  <div class="definition-container">
+    <h4>Meaning</h4>
+    <ul id="definition-list">
+  
+    </ul>
+    <div class="synonyms-container">
+      <h4>Synonyms</h4>
+      <p class="synonyms"></p>
+    </div>
+  </div>`
+  boilerplate.appendChild(template)
+}
+
+//Test function
+
+const logo = document.querySelector('#logo')
+
+logo.addEventListener('click', () => {
+    addBoilerplate()
+})
 
 function addItem(def) {
     let newItem = document.createElement('li')
@@ -43,7 +70,6 @@ form.addEventListener('submit', () => {
 .then(response => response.json())
 .then(data => {
     console.log(data[0].meanings);
-    boilerplate.classList.remove('hidden')
     playbackButton.classList.remove('hidden')
     footerContainer.classList.remove('hidden')
     getNumberOfMeanings(data[0].meanings)
