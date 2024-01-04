@@ -82,6 +82,18 @@ form.addEventListener('submit', () => {
 
     console.log(data[0].meanings.length)
 
+    //Test area for object looping
+
+    let meaningsArray = data[0].meanings
+
+    console.log(meaningsArray)
+
+    for (const obj of meaningsArray) {
+        console.log(obj.partOfSpeech)
+    }
+
+    //Test area end
+
     const partOfSpeechOne = document.querySelector("#pos-one")
     const definitionList = document.querySelector('#definition-list')
     const synonyms = document.querySelector('.synonyms')
