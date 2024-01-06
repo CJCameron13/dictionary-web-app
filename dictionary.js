@@ -88,13 +88,23 @@ form.addEventListener('submit', () => {
 
     console.log(meaningsArray)
 
-    for (const obj of meaningsArray) {
-        console.log(obj.partOfSpeech)
-    }
+    const posArray = meaningsArray.map(obj => obj.partOfSpeech)
+    console.log(posArray)
+
+    const partOfSpeech = document.querySelectorAll('.pos')
+
+    console.log(partOfSpeech)
+
+    let p = 0
+
+    partOfSpeech.forEach((pos) => {
+        pos.textContent = posArray[p]
+        p++
+    })
 
     //Test area end
 
-    const partOfSpeechOne = document.querySelector("#pos-one")
+    //const partOfSpeechOne = document.querySelector("#pos-one")
     const definitionList = document.querySelector('#definition-list')
     const synonyms = document.querySelector('.synonyms')
 
@@ -110,7 +120,7 @@ form.addEventListener('submit', () => {
     
     word.textContent = data[0].word
     pronunciation.textContent = data[0].phonetic
-    partOfSpeechOne.textContent = data[0].meanings[0].partOfSpeech
+    //partOfSpeechOne.textContent = data[0].meanings[0].partOfSpeech
     
         let i = 0
         while (i < data[0].meanings[0].definitions.length) {
