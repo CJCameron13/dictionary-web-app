@@ -60,7 +60,7 @@ form.addEventListener('submit', () => {
       </div>
       <div class="definition-container">
         <h4>Meaning</h4>
-        <ul id="definition-list">
+        <ul class="definition-list">
       
         </ul>
         <div class="synonyms-container">
@@ -105,15 +105,54 @@ form.addEventListener('submit', () => {
     //Test area end
 
     //const partOfSpeechOne = document.querySelector("#pos-one")
-    const definitionList = document.querySelector('#definition-list')
+    const definitionList = document.querySelectorAll('.definition-list')
+    
+    let definitionsArray = meaningsArray.map(obj => obj.definitions)
+
+    console.log(definitionsArray.length)
+
+    //console.log(newArray)
+
+
     const synonyms = document.querySelector('.synonyms')
 
+
     function addItem(def) {
+
+        //definitionList.appendChild(newItem)
+        let p = 0
+        let t = 0
+        console.log(definitionList.length)
+
         let newItem = document.createElement('li')
-        newItem.className = 'definition'
-        definitionList.appendChild(newItem)
-        newItem.textContent = def
+            newItem.className = 'definition'
+        
+        while (t < definitionList.length) {
+            console.log(definitionList[t])
+            definitionList[t].appendChild(newItem)
+            t++
+        }
+
+        while (p < def.length) {
+            newItem.textContent = def[p]
+            p++
+       }
+
+         
+        
+        
     }
+
+    
+        let i = 0
+        while (i < definitionsArray.length) {
+           let newArray = definitionsArray[i].map(obj => obj.definition)
+           console.log(newArray)
+           definitionList[i].textContent = newArray
+           addItem(newArray)
+           i++
+        }
+        
     
     playbackButton.classList.remove('hidden')
     footerContainer.classList.remove('hidden')
@@ -121,13 +160,7 @@ form.addEventListener('submit', () => {
     word.textContent = data[0].word
     pronunciation.textContent = data[0].phonetic
     //partOfSpeechOne.textContent = data[0].meanings[0].partOfSpeech
-    
-        let i = 0
-        while (i < data[0].meanings[0].definitions.length) {
-            // console.log(data[0].meanings[0].definitions[i].definition)
-            addItem(data[0].meanings[0].definitions[i].definition)
-            i++
-        }
+        
     
     synonyms.textContent = data[0].meanings[0].synonyms.join(', ')
     
