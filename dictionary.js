@@ -1,9 +1,6 @@
 const form = document.querySelector('#input-form')
 const word = document.querySelector('#word')
 const pronunciation = document.querySelector('#pronunciation')
-
-
-
 const playbackButton = document.querySelector('#playback-button')
 const footerContainer = document.querySelector('#footer')
 const boilerplate = document.querySelector('.boilerplate')
@@ -104,54 +101,31 @@ form.addEventListener('submit', () => {
 
     //Test area end
 
-    //const partOfSpeechOne = document.querySelector("#pos-one")
+    //List of definitions population
+    
     const definitionList = document.querySelectorAll('.definition-list')
     
     let definitionsArray = meaningsArray.map(obj => obj.definitions)
 
-    console.log(definitionsArray.length)
+    console.log(definitionsArray)
 
-    //console.log(newArray)
+    definitionsArray.forEach((newArray) => {
+        let list = newArray.map(obj => obj.definition)
+        //console.log(list)
+        let i = 0
+        while (i < list.length) {
+            console.log(list[i])
+            i++
+        }
+    })
+
+    //End section
 
 
     const synonyms = document.querySelector('.synonyms')
 
 
-    function addItem(def) {
-
-        //definitionList.appendChild(newItem)
-        let p = 0
-        let t = 0
-        console.log(definitionList.length)
-
-        let newItem = document.createElement('li')
-            newItem.className = 'definition'
-        
-        while (t < definitionList.length) {
-            console.log(definitionList[t])
-            definitionList[t].appendChild(newItem)
-            t++
-        }
-
-        while (p < def.length) {
-            newItem.textContent = def[p]
-            p++
-       }
-
-         
-        
-        
-    }
-
     
-        let i = 0
-        while (i < definitionsArray.length) {
-           let newArray = definitionsArray[i].map(obj => obj.definition)
-           console.log(newArray)
-           definitionList[i].textContent = newArray
-           addItem(newArray)
-           i++
-        }
         
     
     playbackButton.classList.remove('hidden')
