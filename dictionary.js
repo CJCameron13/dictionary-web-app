@@ -77,20 +77,20 @@ form.addEventListener('submit', () => {
     }
     
 
-    console.log(data[0].meanings.length)
+    console.log(data)
 
     //Test area for object looping
 
     let meaningsArray = data[0].meanings
 
-    console.log(meaningsArray)
+    //console.log(meaningsArray)
 
     const posArray = meaningsArray.map(obj => obj.partOfSpeech)
-    console.log(posArray)
+    //console.log(posArray)
 
     const partOfSpeech = document.querySelectorAll('.pos')
 
-    console.log(partOfSpeech)
+    //console.log(partOfSpeech)
 
     let p = 0
 
@@ -101,28 +101,51 @@ form.addEventListener('submit', () => {
 
     //Test area end
 
+    
+
     //List of definitions population
     
     const definitionList = document.querySelectorAll('.definition-list')
     
     let definitionsArray = meaningsArray.map(obj => obj.definitions)
 
-    console.log(definitionsArray)
+    //console.log(definitionsArray)
+
+    let d = 0
 
     definitionsArray.forEach((newArray) => {
         let list = newArray.map(obj => obj.definition)
         //console.log(list)
-        let i = 0
-        while (i < list.length) {
-            console.log(list[i])
-            i++
-        }
+        list.forEach((def) => {
+            let newItem = document.createElement('li')
+            newItem.className = 'definition'
+            definitionList[d].appendChild(newItem)
+            newItem.textContent = def
     })
+
+    d++
+        
+    })
+    
 
     //End section
 
+    //Synonyms population
 
-    const synonyms = document.querySelector('.synonyms')
+    const synonyms = document.querySelectorAll('.synonyms')
+
+    let synonymsArray = meaningsArray.map(obj => obj.synonyms)
+
+    //console.log(synonymsArray)
+
+    let s = 0
+
+    synonyms.forEach((list) => {
+        list.textContent = synonymsArray[s].join(', ')
+        s++
+    })
+
+    //End section
 
 
     
