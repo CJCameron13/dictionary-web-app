@@ -147,12 +147,38 @@ form.addEventListener('submit', () => {
 
     //End section
 
+    //Footer
 
+    footerContainer.classList.remove('hidden')
+
+    let sourceUrl = data[0].sourceUrls[0]
+
+    const sourceElement = document.querySelector('#source-link')
+    sourceElement.textContent = sourceUrl
+
+    const newTabLink = document.querySelector('#new-tab-link')
+    newTabLink.setAttribute('href', sourceUrl)
     
-        
+    //Audio playback
     
     playbackButton.classList.remove('hidden')
-    footerContainer.classList.remove('hidden')
+
+    let audio = data[0].phonetics.map(obj => obj.audio)
+    //console.log(audio[2])
+    
+    let b = 0
+    while (audio[b] === '') {
+        let newAudio = audio[b]
+        b++
+        console.log(newAudio)
+    }
+
+    
+
+    playbackButton.addEventListener('click', () => {
+        
+    })
+    
     
     word.textContent = data[0].word
     pronunciation.textContent = data[0].phonetic
