@@ -182,6 +182,10 @@ h1 {
     color: var(--purple);
 }
 
+#playback-button:hover {
+    cursor: pointer;
+}
+
 .pos-divider {
     display: flex;
     align-items: center;
@@ -313,5 +317,9 @@ body.dark-mode {
 
 .dark-mode .bottom-divider {
     background-color: var(--dark-grey);
+}
+
+.dark-mode #source-link {
+    color: var(--white);
 }
 
