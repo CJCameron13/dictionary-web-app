@@ -5,35 +5,25 @@ const playbackButton = document.querySelector('#playback-button')
 const footerContainer = document.querySelector('#footer')
 const boilerplate = document.querySelector('.boilerplate')
 
+//Prevent page refresh on submit
+
 function submitForm(event){
 
-    //Preventing page refresh
+    
     event.preventDefault();
  }
 
 form.addEventListener('submit', submitForm)
 
 
-
-function getNumberOfMeanings(array) {
-    console.log(array.length)
-    array.length
-}
-
-const callFunction = (func, n) => {
-    for (let i = 1; i <= n; i++) {
-        func()
-    }
-}
+//Primary functions to run on submit
 
 form.addEventListener('submit', () => {
-    const userInput = document.querySelector('#user-input').value
-    boilerplate.classList.add('hidden')
+    let userInput = document.querySelector('#user-input').value
 
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${userInput}`)
 .then(response => response.json())
 .then(data => {
-    boilerplate.classList.remove('hidden')
     word.textContent = data[0].word
     pronunciation.textContent = data[0].phonetic
 
@@ -67,18 +57,13 @@ form.addEventListener('submit', () => {
 
     console.log(data)
 
-    //Test area for object looping
+    //Part of Speech population
 
     let meaningsArray = data[0].meanings
 
-    //console.log(meaningsArray)
-
     const posArray = meaningsArray.map(obj => obj.partOfSpeech)
-    //console.log(posArray)
-
+    
     const partOfSpeech = document.querySelectorAll('.pos')
-
-    //console.log(partOfSpeech)
 
     let p = 0
 
@@ -112,7 +97,7 @@ form.addEventListener('submit', () => {
     })
     
 
-    //End section
+    
 
     //Synonyms population
 
@@ -127,7 +112,7 @@ form.addEventListener('submit', () => {
         s++
     })
 
-    //End section
+    
 
     //Footer
 
@@ -140,6 +125,7 @@ form.addEventListener('submit', () => {
 
     const newTabLink = document.querySelector('#new-tab-link')
     newTabLink.setAttribute('href', sourceUrl)
+    
     
     //Audio playback
     
