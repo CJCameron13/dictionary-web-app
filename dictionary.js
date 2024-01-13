@@ -15,18 +15,6 @@ form.addEventListener('submit', submitForm)
 
 
 
-//Test function
-
-const logo = document.querySelector('#logo')
-
-logo.addEventListener('click', () => {
-    addBoilerplate()
-})
-
-//End Test function
-
-
-
 function getNumberOfMeanings(array) {
     console.log(array.length)
     array.length
@@ -39,15 +27,15 @@ const callFunction = (func, n) => {
 }
 
 form.addEventListener('submit', () => {
-    // console.log('submitted')
     const userInput = document.querySelector('#user-input').value
-    // console.log(userInput)
+    boilerplate.classList.add('hidden')
 
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${userInput}`)
 .then(response => response.json())
 .then(data => {
-    console.log(data[0].meanings);
-    getNumberOfMeanings(data[0].meanings)
+    boilerplate.classList.remove('hidden')
+    word.textContent = data[0].word
+    pronunciation.textContent = data[0].phonetic
 
     function addBoilerplate() {
         let template = document.createElement('div');
@@ -99,7 +87,6 @@ form.addEventListener('submit', () => {
         p++
     })
 
-    //Test area end
 
     
 
@@ -109,13 +96,10 @@ form.addEventListener('submit', () => {
     
     let definitionsArray = meaningsArray.map(obj => obj.definitions)
 
-    //console.log(definitionsArray)
-
     let d = 0
 
     definitionsArray.forEach((newArray) => {
         let list = newArray.map(obj => obj.definition)
-        //console.log(list)
         list.forEach((def) => {
             let newItem = document.createElement('li')
             newItem.className = 'definition'
@@ -135,8 +119,6 @@ form.addEventListener('submit', () => {
     const synonyms = document.querySelectorAll('.synonyms')
 
     let synonymsArray = meaningsArray.map(obj => obj.synonyms)
-
-    //console.log(synonymsArray)
 
     let s = 0
 
@@ -164,31 +146,19 @@ form.addEventListener('submit', () => {
     playbackButton.classList.remove('hidden')
 
     let audio = data[0].phonetics.map(obj => obj.audio)
-    //console.log(audio[2])
     
-    let b = 0
-    while (audio[b] === '') {
-        let newAudio = audio[b]
-        b++
-        console.log(newAudio)
-    }
+    audio.forEach((source) => {
+        if (source !== '') {
+            audio = source
+        }
+    })
 
-    
+    let sound = new Audio(`${audio}`)
 
     playbackButton.addEventListener('click', () => {
-        
+        sound.play()
     })
-    
-    
-    word.textContent = data[0].word
-    pronunciation.textContent = data[0].phonetic
-    //partOfSpeechOne.textContent = data[0].meanings[0].partOfSpeech
-        
-    
-    synonyms.textContent = data[0].meanings[0].synonyms.join(', ')
     
 });
 
 })
-
-// `${data[0].meanings[0].definitions[def].definition}`
