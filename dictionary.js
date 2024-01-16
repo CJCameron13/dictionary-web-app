@@ -4,6 +4,7 @@ const pronunciation = document.querySelector('#pronunciation')
 const playbackButton = document.querySelector('#playback-button')
 const footerContainer = document.querySelector('#footer')
 const boilerplate = document.querySelector('.boilerplate')
+const errorContainer = document.querySelector('#error-container')
 
 //Prevent page refresh on submit
 
@@ -20,9 +21,15 @@ form.addEventListener('submit', submitForm)
 
 form.addEventListener('submit', () => {
     let userInput = document.querySelector('#user-input').value
+    userInput = userInput.trim()
 
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${userInput}`)
-.then(response => response.json())
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Not a word')
+    }
+    return response.json()
+})
 .then(data => {
     word.textContent = data[0].word
     pronunciation.textContent = data[0].phonetic
@@ -145,6 +152,10 @@ form.addEventListener('submit', () => {
         sound.play()
     })
     
-});
+})
+.catch(error => {
+    console.error(error)
+    errorContainer.classList.remove('hidden')
+})
 
 })
