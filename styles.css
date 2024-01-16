@@ -156,8 +156,12 @@ body {
     margin-top: 5vh;
 }
 
+#input-form {
+    width: 80%;
+}
+
 #user-input {
-    width: 90%;
+    width: 100%;
     background-color: var(--light-grey);
     border-width: 0;
     outline: none;
@@ -265,6 +269,25 @@ li::marker {
     font-size: 0.8rem;
 }
 
+/*Error state styling*/
+
+#error-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    gap: 2vh;
+    width: 90%;
+}
+
+#error-container.hidden {
+    display: none;
+}
+
+#emoji {
+    font-size: 2rem;
+}
+
 /* Dark mode styling */
 
 body.dark-mode {
@@ -323,3 +346,38 @@ body.dark-mode {
     color: var(--white);
 }
 
+.dark-mode #error-container {
+    color: var(--white);
+}
+
+@media screen and (max-width: 1000px) {
+    body {
+        font-size: 0.8rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .pos {
+        font-size: 1rem;
+    }
+
+    #top-row-right {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #top-row-right {
+        width: 70%;
+    }
+
+    #dark-mode-icon {
+        display: none;
+    }
+
+    #font-select-popup {
+        width: 30vw;
+    }
+}
