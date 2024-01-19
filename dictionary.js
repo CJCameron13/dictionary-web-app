@@ -6,6 +6,7 @@ const footerContainer = document.querySelector('#footer')
 const boilerplate = document.querySelector('.boilerplate')
 const errorContainer = document.querySelector('#error-container')
 const searchIcon = document.querySelector('#search-icon')
+const content = document.querySelector('#content')
 
 //Prevent page refresh on submit
 
@@ -21,6 +22,7 @@ form.addEventListener('submit', submitForm)
 //Primary functions to run on submit
 
 form.addEventListener('submit', () => {
+    boilerplate.innerHTML = ''
     let userInput = document.querySelector('#user-input').value
     userInput = userInput.trim()
 
@@ -164,6 +166,7 @@ form.addEventListener('submit', () => {
 //Search Icon functionality
 
 searchIcon.addEventListener('click', () => {
+    boilerplate.innerHTML = ''
     let userInput = document.querySelector('#user-input').value
     userInput = userInput.trim()
 
